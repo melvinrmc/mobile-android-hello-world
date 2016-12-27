@@ -2,8 +2,9 @@
 <resources>
 
     <string name="app_name">LaCasita PoS App</string>
-    <string name="hello">Hello android-application!</string>
-    <string name="action_settings">Settings</string>
+    <string name="hello">Hello LaCasita Pos App for Android!</string>
+    <string name="action_settings">Configuracion</string>
     <string name="hello_world">Hello Tyson!</string>
 
 </resources>
+
