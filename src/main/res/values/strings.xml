@@ -3,10 +3,14 @@
 
     <string name="app_name">LaCasita PoS App</string>
     <string name="hello">Hello LaCasita Pos App for Android!</string>
-    <string name="action_settings">Configuracion</string>
-    <string name="hello_world">Hello Tyson!</string>
+    <string name="action_settings">Configuración</string>
+    <string name="hello_world">Bienvenidos a "La Casita" Pescados y Mariscos</string>
     <string name="hola_mundo">Hola Mundo</string>
     <string name="hola_jimmy">Hola Jimmy</string>
+    
+    <string name="edit_user">Usuario</string>
+    <string name="edit_password">Password</string>
+    <string name="button_send">Entrar</string>
 
 </resources>
 

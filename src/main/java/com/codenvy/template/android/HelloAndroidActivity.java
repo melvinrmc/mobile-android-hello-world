@@ -4,8 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 
-public class HelloAndroidActivity extends Activity {
+import android.view.View;
+import android.content.Intent;
+import android.widget.EditText;
 
+import com.amazonaws.*;
+
+public class HelloAndroidActivity extends Activity {
+    public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     /**
      * Called when the activity is first created.
      *
@@ -26,6 +32,20 @@ public class HelloAndroidActivity extends Activity {
         getMenuInflater().inflate(com.codenvy.template.android.R.menu.main, menu);
         return true;
     }
+    
+     /** Called when the user clicks the Login Button */
+    public void login(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        EditText editText = (EditText) findViewById(R.id.edit_user);
+        String message = editText.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+        
+        
+        
+    }
+    
 
 }
 
