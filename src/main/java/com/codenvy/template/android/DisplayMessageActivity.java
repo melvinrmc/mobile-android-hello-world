@@ -18,10 +18,10 @@ public class DisplayMessageActivity extends Activity {
         Intent intent = getIntent();
         String message = intent.getStringExtra(HelloAndroidActivity.EXTRA_MESSAGE);
         TextView textView = new TextView(this);
-        textView.setTextSize(40);
+        textView.setTextSize(24);
         textView.setText(message);
 
-        ViewGroup layout = (ViewGroup)findViewById(R.id.text_view);
+        ViewGroup layout = (ViewGroup) findViewById(R.id.activity_display_message);
         layout.addView(textView);
     }
 }

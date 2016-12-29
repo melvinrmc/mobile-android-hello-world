@@ -11,6 +11,7 @@
     <string name="edit_user">Usuario</string>
     <string name="edit_password">Password</string>
     <string name="button_send">Entrar</string>
+    <string name="button_test">Test Amazon AWS DynamoDb </string>
 
 </resources>
 
