@@ -66,7 +66,11 @@ public class HelloAndroidActivity extends Activity {
         Toast.makeText(
                 this,
                 "Prueba de Toast.",
-                Toast.LENGTH_LONG).show();
+                Toast.LENGTH_SHORT).show();
+
+        new DynamoDBManagerTask()
+                .execute(DynamoDBManagerType.CREATE_TABLE);
+
     }
 
     /**

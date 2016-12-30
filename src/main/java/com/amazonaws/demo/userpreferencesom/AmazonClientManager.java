@@ -63,7 +63,7 @@ public class AmazonClientManager {
                 Regions.US_EAST_1);
 
         ddb = new AmazonDynamoDBClient(credentials);
-        ddb.setRegion(Region.getRegion(Regions.US_WEST_2));
+        ddb.setRegion(Region.getRegion(Regions.US_EAST_1));
     }
 
     public boolean wipeCredentialsOnAuthError(AmazonServiceException ex) {
