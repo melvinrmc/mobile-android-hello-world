@@ -17,9 +17,11 @@ package com.amazonaws.demo.userpreferencesom;
 
 import java.util.Random;
 
+import com.lacasitaapp.admin.Credenciales;
+
 public class Constants {
 
-    public static final String IDENTITY_POOL_ID = "us-east-1:XXXXX";
+    public static final String IDENTITY_POOL_ID = Credenciales.LA_CASITA_APP_IDENTITY_POOL_ID;
     // Note that spaces are not allowed in the table name
     public static final String TEST_TABLE_NAME = "CHANGE_ME";
     public static final String LC_POS_USUARIO = "lc_pos_usuario";
