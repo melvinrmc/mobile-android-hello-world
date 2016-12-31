@@ -11,6 +11,7 @@ public class User {
     private String usuario;
     private String nombre;
     private String password;
+    private String estado;
 
     @DynamoDBHashKey(attributeName = "usuario")
     public String getUsuario() {
@@ -38,4 +39,15 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @DynamoDBAttribute(attributeName = "estado")
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+
 }

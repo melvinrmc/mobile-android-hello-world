@@ -35,7 +35,8 @@ import com.amazonaws.services.dynamodbv2.model.KeyType;
 import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
 import com.amazonaws.services.dynamodbv2.model.ResourceNotFoundException;
 import com.amazonaws.services.dynamodbv2.model.ScalarAttributeType;
-import com.codenvy.template.android.HelloAndroidActivity;
+
+import com.lacasitaapp.dal.DataManager;
 
 import java.util.ArrayList;
 
@@ -52,7 +53,7 @@ public class DynamoDBManager {
 
         Log.d(TAG, "Create table called");
 
-        AmazonDynamoDBClient ddb = HelloAndroidActivity.clientManager
+        AmazonDynamoDBClient ddb = DataManager.clientManager
                 .ddb();
 
         KeySchemaElement kse = new KeySchemaElement().withAttributeName(
@@ -73,7 +74,7 @@ public class DynamoDBManager {
             Log.d(TAG, "Create request response successfully recieved");
         } catch (AmazonServiceException ex) {
             Log.e(TAG, "Error sending create table request", ex);
-            HelloAndroidActivity.clientManager
+            DataManager.clientManager
                     .wipeCredentialsOnAuthError(ex);
         }
     }
@@ -84,7 +85,7 @@ public class DynamoDBManager {
     public static String getTestTableStatus() {
 
         try {
-            AmazonDynamoDBClient ddb = HelloAndroidActivity.clientManager
+            AmazonDynamoDBClient ddb = DataManager.clientManager
                     .ddb();
 
             DescribeTableRequest request = new DescribeTableRequest()
@@ -96,7 +97,7 @@ public class DynamoDBManager {
 
         } catch (ResourceNotFoundException e) {
         } catch (AmazonServiceException ex) {
-            HelloAndroidActivity.clientManager
+            DataManager.clientManager
                     .wipeCredentialsOnAuthError(ex);
         }
 
@@ -107,7 +108,7 @@ public class DynamoDBManager {
      * Inserts ten users with userNo from 1 to 10 and random names.
      */
     public static void insertUsers() {
-        AmazonDynamoDBClient ddb = HelloAndroidActivity.clientManager
+        AmazonDynamoDBClient ddb = DataManager.clientManager
                 .ddb();
         DynamoDBMapper mapper = new DynamoDBMapper(ddb);
 
@@ -124,7 +125,7 @@ public class DynamoDBManager {
             }
         } catch (AmazonServiceException ex) {
             Log.e(TAG, "Error inserting users");
-            HelloAndroidActivity.clientManager
+            DataManager.clientManager
                     .wipeCredentialsOnAuthError(ex);
         }
     }
@@ -134,7 +135,7 @@ public class DynamoDBManager {
      */
     public static ArrayList<UserPreference> getUserList() {
 
-        AmazonDynamoDBClient ddb = HelloAndroidActivity.clientManager
+        AmazonDynamoDBClient ddb = DataManager.clientManager
                 .ddb();
         DynamoDBMapper mapper = new DynamoDBMapper(ddb);
 
@@ -150,7 +151,7 @@ public class DynamoDBManager {
             return resultList;
 
         } catch (AmazonServiceException ex) {
-            HelloAndroidActivity.clientManager
+            DataManager.clientManager
                     .wipeCredentialsOnAuthError(ex);
         }
 
@@ -162,7 +163,7 @@ public class DynamoDBManager {
      */
     public static UserPreference getUserPreference(int userNo) {
 
-        AmazonDynamoDBClient ddb = HelloAndroidActivity.clientManager
+        AmazonDynamoDBClient ddb = DataManager.clientManager
                 .ddb();
         DynamoDBMapper mapper = new DynamoDBMapper(ddb);
 
@@ -173,7 +174,7 @@ public class DynamoDBManager {
             return userPreference;
 
         } catch (AmazonServiceException ex) {
-            HelloAndroidActivity.clientManager
+            DataManager.clientManager
                     .wipeCredentialsOnAuthError(ex);
         }
 
@@ -185,7 +186,7 @@ public class DynamoDBManager {
      */
     public static void updateUserPreference(UserPreference updateUserPreference) {
 
-        AmazonDynamoDBClient ddb = HelloAndroidActivity.clientManager
+        AmazonDynamoDBClient ddb = DataManager.clientManager
                 .ddb();
         DynamoDBMapper mapper = new DynamoDBMapper(ddb);
 
@@ -193,7 +194,7 @@ public class DynamoDBManager {
             mapper.save(updateUserPreference);
 
         } catch (AmazonServiceException ex) {
-            HelloAndroidActivity.clientManager
+            DataManager.clientManager
                     .wipeCredentialsOnAuthError(ex);
         }
     }
@@ -203,7 +204,7 @@ public class DynamoDBManager {
      */
     public static void deleteUser(UserPreference deleteUserPreference) {
 
-        AmazonDynamoDBClient ddb = HelloAndroidActivity.clientManager
+        AmazonDynamoDBClient ddb = DataManager.clientManager
                 .ddb();
         DynamoDBMapper mapper = new DynamoDBMapper(ddb);
 
@@ -211,7 +212,7 @@ public class DynamoDBManager {
             mapper.delete(deleteUserPreference);
 
         } catch (AmazonServiceException ex) {
-            HelloAndroidActivity.clientManager
+            DataManager.clientManager
                     .wipeCredentialsOnAuthError(ex);
         }
     }
@@ -222,7 +223,7 @@ public class DynamoDBManager {
      */
     public static void cleanUp() {
 
-        AmazonDynamoDBClient ddb = HelloAndroidActivity.clientManager
+        AmazonDynamoDBClient ddb = DataManager.clientManager
                 .ddb();
 
         DeleteTableRequest request = new DeleteTableRequest()
@@ -231,7 +232,7 @@ public class DynamoDBManager {
             ddb.deleteTable(request);
 
         } catch (AmazonServiceException ex) {
-            HelloAndroidActivity.clientManager
+            DataManager.clientManager
                     .wipeCredentialsOnAuthError(ex);
         }
     }

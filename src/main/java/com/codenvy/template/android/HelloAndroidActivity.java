@@ -8,10 +8,13 @@ import android.view.View;
 import android.content.Intent;
 import android.widget.EditText;
 
-import com.amazonaws.demo.userpreferencesom.AmazonClientManager; // establece la conexion
-import com.amazonaws.demo.userpreferencesom.DynamoDBManager;    // rutinas de base de datos
 
-import android.os.AsyncTask;// ejecutar rutinas de base de datos de manera asincrona en multi hilos
+import com.amazonaws.demo.userpreferencesom.DynamoDBManager;    // rutinas de base de datos
+import com.lacasitaapp.admin.User;
+import com.lacasitaapp.bll.Usuario;
+import com.lacasitaapp.dal.DataManager;
+
+import android.os.AsyncTask;// ejecutar rutinas de manera asincrona en multi hilos
 import android.widget.Toast;
 
 public class HelloAndroidActivity extends Activity {
@@ -19,8 +22,6 @@ public class HelloAndroidActivity extends Activity {
     // El Intent es la pila para el paso de parametros entre ventanas.
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
-    // preparamos la llamada para los servicios de Amazon AWS ddb.
-    public static AmazonClientManager clientManager = null;
 
     /**
      * Called when the activity is first created.
@@ -34,10 +35,9 @@ public class HelloAndroidActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Agregamos la llamada a amazon aws
-        clientManager = new AmazonClientManager(this);
-
-
+        // Enviamos el Contexto a manejador de datos.
+        // Es la única vez en toda la App que realizamos esto.
+        new DataManager(this);
     }
 
     @Override
@@ -53,13 +53,18 @@ public class HelloAndroidActivity extends Activity {
     public void login(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, DisplayMessageActivity.class);
+
         EditText editUser = (EditText) findViewById(R.id.edit_user);
         EditText editPassword = (EditText) findViewById(R.id.edit_password);
 
-
         String message = editUser.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
+
+        User usuario = new User();
+        usuario.setUsuario(editUser.getText().toString());
+        usuario.setPassword(editPassword.getText().toString());
+
+        new LoginTask().execute(usuario);
+
     }
 
     public void testAmazonAWS(View view) {
@@ -70,6 +75,57 @@ public class HelloAndroidActivity extends Activity {
 
         new DynamoDBManagerTask()
                 .execute(DynamoDBManagerType.CREATE_TABLE);
+
+    }
+
+    private enum UsuarioActividadTipo {LOGIN}
+
+    private class LoginTask extends
+            AsyncTask<User, Void, User> {
+
+        @Override
+        protected User doInBackground(User... usuarios) {
+            User usuario = usuarios[0];
+            User usuarioEnBDD = Usuario.doLogin(usuario.getUsuario(), usuario.getPassword());
+            return usuarioEnBDD;
+        }
+
+        protected void onPostExecute(User usuarioEnBDD) {
+            if (usuarioEnBDD == null) {
+
+                Toast.makeText(
+                        HelloAndroidActivity.this,
+                        "Lo sentimos, tus credenciales no son válidas.",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(
+                        HelloAndroidActivity.this,
+                        "Bienvenido " + usuarioEnBDD.getNombre(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private class UsuarioActividadResultado {
+
+        private UsuarioActividadTipo usuarioActividadTipo;
+        private String resultado;
+
+        public UsuarioActividadTipo getUsuarioActividadTipo() {
+            return usuarioActividadTipo;
+        }
+
+        public void setUsuarioActividadTipo(UsuarioActividadTipo usuarioActividadTipo) {
+            this.usuarioActividadTipo = usuarioActividadTipo;
+        }
+
+        public String getResultado() {
+            return resultado;
+        }
+
+        public void setResultado(String resultado) {
+            this.resultado = resultado;
+        }
 
     }
 
@@ -139,16 +195,12 @@ public class HelloAndroidActivity extends Activity {
                     && result.getTaskType() == DynamoDBManagerType.INSERT_USER) {
                 Toast.makeText(HelloAndroidActivity.this,
                         "Users inserted successfully!", Toast.LENGTH_SHORT).show();
+            } else if (result.getTableStatus().equalsIgnoreCase("ACTIVE")
+                    && result.getTaskType() == DynamoDBManagerType.DO_USER_LOGIN) {
+                Toast.makeText(HelloAndroidActivity.this,
+                        "Users inserted successfully!", Toast.LENGTH_SHORT).show();
             }
         }
-    }
-
-
-    /**
-     * Catalogo de operaciones que ofrece el DynamoDBManager
-     */
-    private enum DynamoDBManagerType {
-        GET_TABLE_STATUS, CREATE_TABLE, INSERT_USER, LIST_USERS, CLEAN_UP
     }
 
     /**
@@ -175,6 +227,12 @@ public class HelloAndroidActivity extends Activity {
         }
     }
 
+    /**
+     * Catalogo de operaciones que ofrece el DynamoDBManager
+     */
 
+    private enum DynamoDBManagerType {
+        GET_TABLE_STATUS, CREATE_TABLE, INSERT_USER, LIST_USERS, CLEAN_UP, DO_USER_LOGIN
+    }
 }
 
