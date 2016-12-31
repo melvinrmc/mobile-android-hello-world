@@ -1,6 +1,8 @@
 package com.codenvy.template.android;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 
@@ -21,7 +23,7 @@ public class HelloAndroidActivity extends Activity {
     // EXTRA_MESSAGE es la Key del par (key,value) utilizado en el Intent.
     // El Intent es la pila para el paso de parametros entre ventanas.
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
-
+    private ProgressDialog pDialog;
 
     /**
      * Called when the activity is first created.
@@ -62,7 +64,11 @@ public class HelloAndroidActivity extends Activity {
         User usuario = new User();
         usuario.setUsuario(editUser.getText().toString());
         usuario.setPassword(editPassword.getText().toString());
-
+        pDialog = new ProgressDialog(this);
+        pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        pDialog.setMessage("Procesando...");
+        pDialog.setCancelable(true);
+        pDialog.setMax(100);
         new LoginTask().execute(usuario);
 
     }
@@ -90,7 +96,23 @@ public class HelloAndroidActivity extends Activity {
             return usuarioEnBDD;
         }
 
+
+        @Override
+        protected void onPreExecute() {
+
+            pDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
+                    LoginTask.this.cancel(true);
+                }
+            });
+
+            pDialog.setProgress(0);
+            pDialog.show();
+        }
         protected void onPostExecute(User usuarioEnBDD) {
+
+            pDialog.dismiss();
             if (usuarioEnBDD == null) {
 
                 Toast.makeText(
@@ -102,7 +124,15 @@ public class HelloAndroidActivity extends Activity {
                         HelloAndroidActivity.this,
                         "Bienvenido " + usuarioEnBDD.getNombre(),
                         Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(HelloAndroidActivity.this,
+                        DisplayMessageActivity.class));
             }
+        }
+
+        @Override
+        protected void onCancelled() {
+            Toast.makeText(HelloAndroidActivity.this, "Tarea cancelada!",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 

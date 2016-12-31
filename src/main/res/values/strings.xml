@@ -6,12 +6,17 @@
     <string name="action_settings">Configuración</string>
     <string name="hello_world">Bienvenidos a "La Casita" Pescados y Mariscos</string>
     <string name="hola_mundo">Hola Mundo</string>
-    <string name="hola_jimmy">Hola Jimmy</string>
+    <string name="hola_jimmy">Hola Fifi</string>
     
     <string name="edit_user">Usuario</string>
     <string name="edit_password">Password</string>
     <string name="button_send">Entrar</string>
     <string name="button_test">Test Amazon AWS DynamoDb </string>
+
+    <string name="button_apertura_tienda">Apertura de Tienda</string>
+    <string name="button_realizar_venta">Realizar una Venta </string>
+    <string name="button_cierre_tienda">Cierre de Tienda </string>
+
 
 </resources>
 
