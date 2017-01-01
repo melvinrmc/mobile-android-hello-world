@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.view.ViewGroup;
 
+import com.lacasitaapp.admin.User;
+
 
 public class DisplayMessageActivity extends Activity {
 
@@ -19,9 +21,18 @@ public class DisplayMessageActivity extends Activity {
         String message = intent.getStringExtra(HelloAndroidActivity.EXTRA_MESSAGE);
         TextView textView = new TextView(this);
         textView.setTextSize(24);
-        textView.setText(message);
+        textView.setText(HelloAndroidActivity.usuario.getNombre());
 
         ViewGroup layout = (ViewGroup) findViewById(R.id.activity_display_message);
-        layout.addView(textView);
+        layout.addView(textView, 0);
+
+
     }
+
+    @Override
+    public void onBackPressed() {
+
+        return;
+    }
+
 }

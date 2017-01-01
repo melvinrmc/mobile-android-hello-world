@@ -24,6 +24,7 @@ public class HelloAndroidActivity extends Activity {
     // El Intent es la pila para el paso de parametros entre ventanas.
     public final static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
     private ProgressDialog pDialog;
+    public static User usuario;
 
     /**
      * Called when the activity is first created.
@@ -61,7 +62,7 @@ public class HelloAndroidActivity extends Activity {
 
         String message = editUser.getText().toString();
 
-        User usuario = new User();
+        usuario = new User();
         usuario.setUsuario(editUser.getText().toString());
         usuario.setPassword(editPassword.getText().toString());
         pDialog = new ProgressDialog(this);
@@ -73,6 +74,7 @@ public class HelloAndroidActivity extends Activity {
 
     }
 
+    //TODO: Eliminar testAmazonAWS
     public void testAmazonAWS(View view) {
         Toast.makeText(
                 this,
@@ -124,18 +126,21 @@ public class HelloAndroidActivity extends Activity {
                         HelloAndroidActivity.this,
                         "Bienvenido " + usuarioEnBDD.getNombre(),
                         Toast.LENGTH_SHORT).show();
+                HelloAndroidActivity.usuario = usuarioEnBDD;
                 startActivity(new Intent(HelloAndroidActivity.this,
                         DisplayMessageActivity.class));
+                finish();
             }
         }
 
         @Override
         protected void onCancelled() {
-            Toast.makeText(HelloAndroidActivity.this, "Tarea cancelada!",
+            Toast.makeText(HelloAndroidActivity.this, "Login cancelado!",
                     Toast.LENGTH_SHORT).show();
         }
     }
 
+    //TODO: eliminar clase UsuarioActividadResultado
     private class UsuarioActividadResultado {
 
         private UsuarioActividadTipo usuarioActividadTipo;
@@ -161,6 +166,7 @@ public class HelloAndroidActivity extends Activity {
 
     /**
      * Tareas que ofrece al Activity que pueden y deben ejecutarse en paralelo
+     * TODO: limpiar Actividad Principal de la implementacion explicita de helloAndroidActivity.
      */
     private class DynamoDBManagerTask extends
             AsyncTask<DynamoDBManagerType, Void, DynamoDBManagerTaskResult> {

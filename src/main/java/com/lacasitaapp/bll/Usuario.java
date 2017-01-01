@@ -8,11 +8,11 @@ import com.lacasitaapp.dal.DataManager;
  */
 
 public class Usuario {
-    public static User doLogin(String usuario, String password) {
-        User miUsuario = DataManager.buscarUsuario(usuario);
+    public static User doLogin(String pUsuario, String pPassword) {
+        User miUsuario = DataManager.buscarUsuario(pUsuario);
         if (miUsuario != null) {
-            if (miUsuario.getUsuario().equalsIgnoreCase(usuario)
-                    && miUsuario.getPassword().equalsIgnoreCase(password)
+            if (miUsuario.getUsuario().equalsIgnoreCase(pUsuario)
+                    && miUsuario.getPassword().equalsIgnoreCase(pPassword)
                     ) {
                 return miUsuario;
             }
