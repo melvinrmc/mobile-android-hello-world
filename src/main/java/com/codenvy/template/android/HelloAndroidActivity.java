@@ -63,8 +63,8 @@ public class HelloAndroidActivity extends Activity {
         String message = editUser.getText().toString();
 
         usuario = new User();
-        usuario.setUsuario(editUser.getText().toString());
-        usuario.setPassword(editPassword.getText().toString());
+        usuario.setUsuario(editUser.getText().toString().trim());
+        usuario.setPassword(editPassword.getText().toString().trim());
         pDialog = new ProgressDialog(this);
         pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pDialog.setMessage("Procesando...");
