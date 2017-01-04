@@ -43,6 +43,12 @@ public class CategoriaActivity extends Activity {
             idCategoria = "A";
         } else if (nombreCategoria.equalsIgnoreCase(getResources().getString(R.string.button_categoria_b))) {
             idCategoria = "B";
+        } else if (nombreCategoria.equalsIgnoreCase(getResources().getString(R.string.button_categoria_c))) {
+            idCategoria = "C";
+        } else if (nombreCategoria.equalsIgnoreCase(getResources().getString(R.string.button_categoria_d))) {
+            idCategoria = "D";
+        } else if (nombreCategoria.equalsIgnoreCase(getResources().getString(R.string.button_categoria_e))) {
+            idCategoria = "E";
         } else {
             idCategoria = "";
         }

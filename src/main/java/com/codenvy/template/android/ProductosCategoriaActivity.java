@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.lacasitaapp.bll.ProductoManager;
@@ -34,14 +36,30 @@ public class ProductosCategoriaActivity extends Activity {
 
         ArrayList<Producto> productos = new ArrayList<Producto>();
         productos = ProductoManager.getProductos(categoria);
+        ViewGroup layout = (ViewGroup) findViewById(R.id.productos_categoria_layout);
+
+        TableLayout.LayoutParams paramsForRow = new TableLayout.LayoutParams(0, TableLayout.LayoutParams.WRAP_CONTENT, 0.33f);
+        TableRow tableRow = new TableRow(this);
+        tableRow.setLayoutParams(paramsForRow);
+        tableRow.setWeightSum(1);
+
+        TableRow.LayoutParams params = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 0.5f);
+
+
 
         for (Producto p : productos) {
-            TextView textView = new TextView(this);
-            textView.setTextSize(40);
-            textView.setText(p.getNombre());
 
-            ViewGroup layout = (ViewGroup) findViewById(R.id.productos_categoria_layout);
-            layout.addView(textView);
+            TextView textView = new TextView(this);
+            textView.setTextSize(32);
+            textView.setText(p.getNombre());
+            textView.setLayoutParams(params);
+            tableRow.addView(textView);
+
+            if (tableRow.getChildCount() == 2) {
+                layout.addView(tableRow);
+                tableRow = new TableRow(this);
+                tableRow.setLayoutParams(paramsForRow);
+            }
 
         }
     }

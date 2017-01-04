@@ -47,7 +47,8 @@
         android:background="@color/bg_color_cat_c"
         android:text="@string/button_categoria_c"
         android:textColor="#FFFFFF"
-        android:textSize="32dp" />
+        android:textSize="32dp"
+        android:onClick="openCategoria" />
 
     <Button
 
@@ -57,7 +58,8 @@
         android:background="@color/bg_color_cat_d"
         android:text="@string/button_categoria_d"
         android:textColor="#FFFFFF"
-        android:textSize="32dp" />
+        android:textSize="32dp"
+        android:onClick="openCategoria" />
 
     <Button
 
@@ -67,6 +69,7 @@
         android:background="@color/bg_color_cat_e"
         android:text="@string/button_categoria_e"
         android:textColor="#FFFFFF"
-        android:textSize="32dp" />
+        android:textSize="32dp"
+        android:onClick="openCategoria" />
 
 </LinearLayout>
