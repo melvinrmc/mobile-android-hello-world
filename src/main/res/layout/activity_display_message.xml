@@ -18,7 +18,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_realizar_venta"
-        android:layout_weight="0.3" />
+        android:layout_weight="0.3"
+        android:onClick="realizarVenta" />
 
     <Button
         android:layout_width="fill_parent"

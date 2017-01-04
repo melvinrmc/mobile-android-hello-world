@@ -4,15 +4,17 @@
    android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/activity_horizontal_margin"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:background="@drawable/background_login"
 
-    <TextView
+        >
+
+        <TextView
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:text="@string/hello_world"
-        android:textSize="24dp"
-        android:layout_weight="0.5"
 
+            android:textSize="24dp"
+            android:layout_weight="0.65"
         />
 
         <LinearLayout

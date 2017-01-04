@@ -17,6 +17,12 @@
     <string name="button_realizar_venta">Realizar una Venta </string>
     <string name="button_cierre_tienda">Cierre de Tienda </string>
 
+    <string name="button_categoria_a">Mojarras y Filete</string>
+    <string name="button_categoria_b">Juilin y Sierra</string>
+    <string name="button_categoria_c">Camarones</string>
+    <string name="button_categoria_d">Caldo de Mariscos</string>
+    <string name="button_categoria_e">Ceviche</string>
+
 
 </resources>
 

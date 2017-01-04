@@ -25,6 +25,17 @@ public class Constants {
     // Note that spaces are not allowed in the table name
     public static final String TEST_TABLE_NAME = "CHANGE_ME";
     public static final String LC_POS_USUARIO = "lc_pos_usuario";
+    public static final String LC_POS_CATEGORIA = "lc_pos_categoria";
+    public static final String LC_POS_PRODUCTO = "lc_pos_producto";
+
+
+    public static final String LIBRA = "Libra";
+    public static final String PAQUETE = "Paquete";
+    public static final String BARRITA = "Barrita";
+    public static final String DOCENA = "Docena";
+    public static final String UNIDAD = "Unidad";
+
+
 
     public static final Random random = new Random();
     public static final String[] NAMES = new String[]{

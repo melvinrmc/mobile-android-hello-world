@@ -5,11 +5,15 @@ import android.content.Context;
 import com.amazonaws.AmazonServiceException;
 
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBScanExpression;
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedScanList;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.codenvy.template.android.HelloAndroidActivity;
 import com.lacasitaapp.admin.User;
 import com.amazonaws.demo.userpreferencesom.AmazonClientManager;
 import com.amazonaws.demo.userpreferencesom.DynamoDBManager;
+
+import java.util.ArrayList;
 
 /**
  * Created by Melvin on 28/12/2016.
@@ -38,6 +42,29 @@ public class DataManager {
         } catch (AmazonServiceException ex) {
             clientManager.wipeCredentialsOnAuthError(ex);
         }
+        return null;
+    }
+
+    public static ArrayList<Producto> getProductos() {
+
+        AmazonDynamoDBClient ddb = clientManager.ddb();
+        DynamoDBMapper mapper = new DynamoDBMapper(ddb);
+
+        DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
+        try {
+            PaginatedScanList<Producto> result = mapper.scan(
+                    Producto.class, scanExpression);
+
+            ArrayList<Producto> resultList = new ArrayList<Producto>();
+            for (Producto p : result) {
+                resultList.add(p);
+            }
+            return resultList;
+
+        } catch (AmazonServiceException ex) {
+            clientManager.wipeCredentialsOnAuthError(ex);
+        }
+
         return null;
     }
 }

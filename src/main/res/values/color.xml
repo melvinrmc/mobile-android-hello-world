@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_color_cat_a">#FFDE5A</color>
+    <color name="bg_color_cat_b">#FF635E</color>
+    <color name="bg_color_cat_c">#21D3FF</color>
+    <color name="bg_color_cat_d">#7CE2E5</color>
+    <color name="bg_color_cat_e">#FFBD58</color>
+
+</resources>

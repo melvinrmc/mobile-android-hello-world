@@ -62,16 +62,21 @@ public class HelloAndroidActivity extends Activity {
 
         String message = editUser.getText().toString();
 
-        usuario = new User();
-        usuario.setUsuario(editUser.getText().toString().trim());
-        usuario.setPassword(editPassword.getText().toString().trim());
-        pDialog = new ProgressDialog(this);
-        pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        pDialog.setMessage("Procesando...");
-        pDialog.setCancelable(true);
-        pDialog.setMax(100);
-        new LoginTask().execute(usuario);
+        if (editUser.getText().toString().trim().equals("")) {
+            editUser.setError("Usuario es requerido");
+        } else {
 
+            usuario = new User();
+            usuario.setUsuario(editUser.getText().toString().trim());
+            usuario.setPassword(editPassword.getText().toString().trim());
+
+            pDialog = new ProgressDialog(this);
+            pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            pDialog.setMessage("Procesando...");
+            pDialog.setCancelable(true);
+            pDialog.setMax(100);
+            new LoginTask().execute(usuario);
+        }
     }
 
     //TODO: Eliminar testAmazonAWS
@@ -112,6 +117,7 @@ public class HelloAndroidActivity extends Activity {
             pDialog.setProgress(0);
             pDialog.show();
         }
+
         protected void onPostExecute(User usuarioEnBDD) {
 
             pDialog.dismiss();

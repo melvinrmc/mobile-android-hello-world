@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:weightSum="1">
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="PRODUCTOS"
+        android:background="#FFFFFF"
+
+        />
+
+    <Button
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"
+        android:background="@color/bg_color_cat_a"
+        android:text="@string/button_categoria_a"
+        android:textColor="#FFFFFF"
+        android:textSize="32dp"
+        android:onClick="openCategoria"
+
+        />
+
+    <Button
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"
+        android:background="@color/bg_color_cat_b"
+        android:text="@string/button_categoria_b"
+        android:textColor="#FFFFFF"
+        android:textSize="32dp"
+        android:onClick="openCategoria" />
+
+    <Button
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"
+        android:background="@color/bg_color_cat_c"
+        android:text="@string/button_categoria_c"
+        android:textColor="#FFFFFF"
+        android:textSize="32dp" />
+
+    <Button
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"
+        android:background="@color/bg_color_cat_d"
+        android:text="@string/button_categoria_d"
+        android:textColor="#FFFFFF"
+        android:textSize="32dp" />
+
+    <Button
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"
+        android:background="@color/bg_color_cat_e"
+        android:text="@string/button_categoria_e"
+        android:textColor="#FFFFFF"
+        android:textSize="32dp" />
+
+</LinearLayout>
