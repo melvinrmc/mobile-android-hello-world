@@ -62,6 +62,7 @@ public class DisplayMessageActivity extends Activity {
 
         @Override
         protected Integer doInBackground(Void... params) {
+            int numCategoriasCargadas = ProductoManager.loadCategorias();
             int numProductosCargados = ProductoManager.loadProductos();
             return ProductoManager.loadProductos();
         }

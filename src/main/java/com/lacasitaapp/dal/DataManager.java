@@ -67,4 +67,27 @@ public class DataManager {
 
         return null;
     }
+
+    public static ArrayList<Categoria> getCategorias() {
+
+        AmazonDynamoDBClient ddb = clientManager.ddb();
+        DynamoDBMapper mapper = new DynamoDBMapper(ddb);
+
+        DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
+        try {
+            PaginatedScanList<Categoria> result = mapper.scan(
+                    Categoria.class, scanExpression);
+
+            ArrayList<Categoria> resultList = new ArrayList<Categoria>();
+            for (Categoria c : result) {
+                resultList.add(c);
+            }
+            return resultList;
+
+        } catch (AmazonServiceException ex) {
+            clientManager.wipeCredentialsOnAuthError(ex);
+        }
+
+        return null;
+    }
 }

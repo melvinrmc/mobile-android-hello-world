@@ -81,5 +81,10 @@ public class Producto {
         this.unidadMedida = unidadMedida;
     }
 
+    public String getSummary() {
+        String summary = getNombre() + " " + "( " + getUnidadMedida() + " )";
+        return summary;
+    }
+
 
 }

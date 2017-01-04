@@ -3,6 +3,7 @@ package com.lacasitaapp.bll;
 import android.provider.ContactsContract;
 
 import com.lacasitaapp.admin.User;
+import com.lacasitaapp.dal.Categoria;
 import com.lacasitaapp.dal.DataManager;
 import com.lacasitaapp.dal.Producto;
 
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 public class ProductoManager {
 
     public static ArrayList<Producto> productos = null;
+    public static ArrayList<Categoria> categorias = null;
 
     public static Integer loadProductos() {
 
@@ -25,15 +27,36 @@ public class ProductoManager {
 
     }
 
+    public static Integer loadCategorias() {
+        if (categorias == null) {
+            categorias = DataManager.getCategorias();
+        }
+        return categorias.size();
+    }
+
     public static ArrayList<Producto> getProductos(String categoria) {
 
         ArrayList<Producto> resultList = new ArrayList<Producto>();
+
         for (Producto p : productos) {
             if (p.getCategoria().equalsIgnoreCase(categoria)) {
                 resultList.add(p);
             }
         }
         return resultList;
+    }
+
+    public static Categoria getCategoria(String categoria) {
+
+        Categoria resultCategoria = null;
+
+        for (Categoria c : categorias) {
+            if (c.getIdCategoria().equalsIgnoreCase(categoria)) {
+                resultCategoria = c;
+                return resultCategoria;
+            }
+        }
+        return resultCategoria;
     }
 }
 
