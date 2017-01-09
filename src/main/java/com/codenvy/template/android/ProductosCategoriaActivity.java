@@ -1,10 +1,15 @@
 package com.codenvy.template.android;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -57,9 +62,16 @@ public class ProductosCategoriaActivity extends Activity {
             TextView textView = new TextView(this);
             textView.setTextSize(24);
             textView.setText(p.getSummary());
-            textView.setLayoutParams(params);
+            // textView.setLayoutParams(params);
             textView.setPadding(5, 5, 5, 5);
             textView.setBackgroundColor(Color.parseColor(miCategoria.getColor()));
+            textView.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    // Perform action on click
+
+                    ingresarCantidad(v);
+                }
+            });
             tableRow.addView(textView);
 
 
@@ -73,11 +85,25 @@ public class ProductosCategoriaActivity extends Activity {
                 TextView textViewRelleno = new TextView(this);
                 textViewRelleno.setTextSize(16);
                 textViewRelleno.setText("");
-                textViewRelleno.setLayoutParams(params);
+                //    textViewRelleno.setLayoutParams(params);
                 tableRow.addView(textViewRelleno);
                 layout.addView(tableRow);
             }
 
+        }
+    }
+
+    private void ingresarCantidad(View view){
+        EditText cantidad = (EditText) findViewById(R.id.edit_cantidad);
+        cantidad.setVisibility(View.VISIBLE);
+        showSoftKeyboard(cantidad);
+    }
+
+    public void showSoftKeyboard(View view) {
+        if (view.requestFocus()) {
+            InputMethodManager imm = (InputMethodManager)
+                    getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
         }
     }
 }

@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/productos_categoria_layout">
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:background="@drawable/background_login"
+    android:orientation="vertical">
 
-</TableLayout>
+    <EditText
+        android:id="@+id/edit_cantidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cantidad"
+        android:inputType="numberDecimal"
+        android:digits="9876543210."
+        android:visibility="invisible"
+        android:textSize="24dp"
+        />
+
+    <TableLayout
+        android:id="@+id/productos_categoria_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    </TableLayout>
+
+</LinearLayout>
