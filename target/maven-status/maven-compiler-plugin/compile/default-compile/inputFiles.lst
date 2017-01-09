@@ -1,4 +1,16 @@
-/projects/mobile-android-hello-world/target/generated-sources/r/com/codenvy/template/android/BuildConfig.java
+/projects/mobile-android-hello-world/src/main/java/com/lacasitaapp/dal/Producto.java
 /projects/mobile-android-hello-world/src/main/java/com/codenvy/template/android/DisplayMessageActivity.java
+/projects/mobile-android-hello-world/src/main/java/com/lacasitaapp/admin/Credenciales.java
+/projects/mobile-android-hello-world/src/main/java/com/amazonaws/demo/userpreferencesom/AmazonClientManager.java
 /projects/mobile-android-hello-world/src/main/java/com/codenvy/template/android/HelloAndroidActivity.java
+/projects/mobile-android-hello-world/src/main/java/com/codenvy/template/android/ProductosCategoriaActivity.java
+/projects/mobile-android-hello-world/src/main/java/com/amazonaws/demo/userpreferencesom/DynamoDBManager.java
+/projects/mobile-android-hello-world/src/main/java/com/lacasitaapp/admin/User.java
+/projects/mobile-android-hello-world/src/main/java/com/lacasitaapp/dal/DataManager.java
+/projects/mobile-android-hello-world/target/generated-sources/r/com/codenvy/template/android/BuildConfig.java
+/projects/mobile-android-hello-world/src/main/java/com/lacasitaapp/bll/Usuario.java
+/projects/mobile-android-hello-world/src/main/java/com/lacasitaapp/dal/Categoria.java
+/projects/mobile-android-hello-world/src/main/java/com/amazonaws/demo/userpreferencesom/Constants.java
+/projects/mobile-android-hello-world/src/main/java/com/codenvy/template/android/CategoriaActivity.java
+/projects/mobile-android-hello-world/src/main/java/com/lacasitaapp/bll/ProductoManager.java
 /projects/mobile-android-hello-world/target/generated-sources/r/com/codenvy/template/android/R.java
