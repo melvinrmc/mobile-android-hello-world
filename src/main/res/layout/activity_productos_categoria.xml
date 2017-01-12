@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/activity_horizontal_margin"
+
     android:background="@drawable/background_login"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/activity_productos_categoria_layout">
 
     <EditText
         android:id="@+id/edit_cantidad"
@@ -18,12 +19,12 @@
         android:textSize="24dp"
         />
 
-    <TableLayout
+
+
+    <ListView
         android:id="@+id/productos_categoria_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-    </TableLayout>
+        android:layout_height="match_parent"
+        android:drawSelectorOnTop="false" />
 
 </LinearLayout>

@@ -1,0 +1,55 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    >
+    <ImageView
+        android:id="@+id/producto_imagen"
+        android:layout_width="?android:attr/listPreferredItemHeight"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:layout_alignParentLeft="true"
+        android:contentDescription="imagen"
+        android:src="@drawable/ic_mojarras"/>
+
+    <TextView
+        android:id="@+id/producto_nombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nombres del producto"
+        android:layout_toRightOf="@id/producto_imagen"
+        android:layout_alignParentTop="true"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:maxLines="1"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+    <TextView
+        android:id="@+id/producto_unidad_medida"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/producto_nombre"
+        android:layout_toRightOf="@id/producto_imagen"
+        android:gravity="left"
+        android:maxLines="1"
+        android:text="Peso en Libras"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+    <TextView
+        android:id="@+id/producto_precio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/producto_unidad_medida"
+        android:layout_toRightOf="@id/producto_imagen"
+        android:gravity="left"
+        android:maxLines="1"
+        android:text="precio en Q."
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+    <!--
+    <RatingBar
+        android:id="@+id/valoracion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/precio"
+        android:layout_toRightOf="@id/imagen"
+        style="?android:attr/ratingBarStyleSmall"
+        android:isIndicator="true"
+        android:rating="3"/> -->
+</RelativeLayout>
