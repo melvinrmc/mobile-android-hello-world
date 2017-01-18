@@ -27,6 +27,7 @@ public class Constants {
     public static final String LC_POS_USUARIO = "lc_pos_usuario";
     public static final String LC_POS_CATEGORIA = "lc_pos_categoria";
     public static final String LC_POS_PRODUCTO = "lc_pos_producto";
+    public static final String LC_POS_VENTA = "lc_pos_venta";
 
 
     public static final String LIBRA = "Libra";

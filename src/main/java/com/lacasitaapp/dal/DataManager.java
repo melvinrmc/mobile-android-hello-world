@@ -8,10 +8,7 @@ import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBScanExpression;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.PaginatedScanList;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
-import com.codenvy.template.android.HelloAndroidActivity;
-import com.lacasitaapp.admin.User;
 import com.amazonaws.demo.userpreferencesom.AmazonClientManager;
-import com.amazonaws.demo.userpreferencesom.DynamoDBManager;
 
 import java.util.ArrayList;
 

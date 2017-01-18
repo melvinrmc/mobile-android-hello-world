@@ -9,9 +9,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.method.KeyListener;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -135,6 +138,27 @@ public class ProductosCategoriaActivity extends Activity implements AdapterView.
     private void ingresarCantidad(View view){
         EditText cantidad = (EditText) findViewById(R.id.edit_cantidad);
         cantidad.setVisibility(View.VISIBLE);
+
+        cantidad.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    handled = true;
+                    if (handled) {
+                        Toast.makeText(ProductosCategoriaActivity.this, "Se agregaron " + cantidad.getText() + " a la carretilla.", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(ProductosCategoriaActivity.this,
+                                CategoriaActivity.class));
+                    }
+                }
+
+                return !handled;
+            }
+        });
+
+
+
         showSoftKeyboard(cantidad);
     }
 
@@ -193,5 +217,6 @@ public class ProductosCategoriaActivity extends Activity implements AdapterView.
         }
 
     }
+
 
 }

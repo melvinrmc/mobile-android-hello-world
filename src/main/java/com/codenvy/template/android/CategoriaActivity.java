@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.lacasitaapp.bll.CarretillaManager;
 import com.lacasitaapp.dal.DataManager;
 import com.lacasitaapp.dal.Producto;
 
@@ -18,8 +19,9 @@ import java.util.List;
 
 public class CategoriaActivity extends Activity {
 
-    public static String CATEGORIA_SELECCIONADA = "CATEGORIA_SELECCIONADA";
 
+    public static String CATEGORIA_SELECCIONADA = "CATEGORIA_SELECCIONADA";
+    public static CarretillaManager carretilla = null;
 
     /**
      * Called when the activity is first created.

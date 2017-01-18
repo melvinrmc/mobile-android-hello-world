@@ -1,8 +1,5 @@
 package com.lacasitaapp.bll;
 
-import android.provider.ContactsContract;
-
-import com.lacasitaapp.admin.User;
 import com.lacasitaapp.dal.Categoria;
 import com.lacasitaapp.dal.DataManager;
 import com.lacasitaapp.dal.Producto;

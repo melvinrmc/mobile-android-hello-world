@@ -12,10 +12,7 @@ import android.widget.TextView;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.lacasitaapp.admin.User;
 import com.lacasitaapp.bll.ProductoManager;
-import com.lacasitaapp.bll.Usuario;
-import com.lacasitaapp.dal.Producto;
 
 
 public class DisplayMessageActivity extends Activity {

@@ -14,9 +14,10 @@
         android:layout_height="wrap_content"
         android:hint="Cantidad"
         android:inputType="numberDecimal"
-        android:digits="9876543210."
         android:visibility="invisible"
         android:textSize="24dp"
+        android:imeOptions="actionDone"
+
         />
 
 

@@ -4,19 +4,22 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 
 import android.view.View;
 import android.content.Intent;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
 
 import com.amazonaws.demo.userpreferencesom.DynamoDBManager;    // rutinas de base de datos
-import com.lacasitaapp.admin.User;
-import com.lacasitaapp.bll.Usuario;
+import com.lacasitaapp.dal.User;
+import com.lacasitaapp.bll.UsuarioManager;
 import com.lacasitaapp.dal.DataManager;
 
 import android.os.AsyncTask;// ejecutar rutinas de manera asincrona en multi hilos
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class HelloAndroidActivity extends Activity {
@@ -41,6 +44,23 @@ public class HelloAndroidActivity extends Activity {
         // Enviamos el Contexto a manejador de datos.
         // Es la única vez en toda la App que realizamos esto.
         new DataManager(this);
+
+        EditText etPassword = (EditText) findViewById(R.id.edit_password);
+        etPassword.setVisibility(View.VISIBLE);
+
+        etPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    login(etPassword);
+                }
+
+                return !handled;
+            }
+        });
+
     }
 
     @Override
@@ -63,7 +83,7 @@ public class HelloAndroidActivity extends Activity {
         String message = editUser.getText().toString();
 
         if (editUser.getText().toString().trim().equals("")) {
-            editUser.setError("Usuario es requerido");
+            editUser.setError("UsuarioManager es requerido");
         } else {
 
             usuario = new User();
@@ -99,7 +119,7 @@ public class HelloAndroidActivity extends Activity {
         @Override
         protected User doInBackground(User... usuarios) {
             User usuario = usuarios[0];
-            User usuarioEnBDD = Usuario.doLogin(usuario.getUsuario(), usuario.getPassword());
+            User usuarioEnBDD = UsuarioManager.doLogin(usuario.getUsuario(), usuario.getPassword());
             return usuarioEnBDD;
         }
 

@@ -1,4 +1,4 @@
-package com.lacasitaapp.admin;
+package com.lacasitaapp.dal;
 
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.*;
 import com.amazonaws.demo.userpreferencesom.Constants;
