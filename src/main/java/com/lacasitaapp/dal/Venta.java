@@ -15,16 +15,12 @@ import java.util.Date;
 public class Venta {
 
     public enum EstadoVenta {EN_ESPERA, EN_PROGRESO, FINALIZADO, PAGADO, ENTREGADO}
-    public class CarretillaItem{
-        private Producto producto;
-        private float cantidad;
-        private float totalItem;
-    }
+    
 
     private String idVenta;
     private Date fechaVenta;
     private User usuario;
-    private ArrayList<CarretillaItem> itemsVenta;
+    private ArrayList<ItemVenta> itemsVenta;
     private float totalMonto;
     private float totalDenominacionPago;
     private float cambio;
@@ -58,11 +54,11 @@ public class Venta {
     }
 
     @DynamoDBAttribute(attributeName = "items_venta")
-    public ArrayList<CarretillaItem> getItemsVenta() {
+    public ArrayList<ItemVenta> getItemsVenta() {
         return itemsVenta;
     }
 
-    public void setItemsVenta(ArrayList<CarretillaItem> itemsVenta) {
+    public void setItemsVenta(ArrayList<ItemVenta> itemsVenta) {
         this.itemsVenta = itemsVenta;
     }
 
@@ -101,5 +97,10 @@ public class Venta {
 
     public void setEstadoVenta(EstadoVenta estadoVenta) {
         this.estadoVenta = estadoVenta;
+    }
+    
+    public void addItem(ItemVenta iv ){
+        this.itemsVenta.add(iv);
+        return;
     }
 }

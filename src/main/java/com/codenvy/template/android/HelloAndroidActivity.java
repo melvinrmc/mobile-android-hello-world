@@ -45,7 +45,7 @@ public class HelloAndroidActivity extends Activity {
         // Es la única vez en toda la App que realizamos esto.
         new DataManager(this);
 
-        EditText etPassword = (EditText) findViewById(R.id.edit_password);
+        final EditText etPassword = (EditText) findViewById(R.id.edit_password);
         etPassword.setVisibility(View.VISIBLE);
 
         etPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
