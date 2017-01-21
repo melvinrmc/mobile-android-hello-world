@@ -39,6 +39,7 @@ import java.util.ArrayList;
 public class ProductosCategoriaActivity extends Activity implements AdapterView.OnItemClickListener {
 
     public static ArrayList<Producto> productos;
+    EditText cantidad ;
     /**
      * Called when the activity is first created.
      *
@@ -136,7 +137,7 @@ public class ProductosCategoriaActivity extends Activity implements AdapterView.
     }
 
     private void ingresarCantidad(View view){
-        EditText cantidad = (EditText) findViewById(R.id.edit_cantidad);
+        cantidad = (EditText) findViewById(R.id.edit_cantidad);
         cantidad.setVisibility(View.VISIBLE);
 
         cantidad.setOnEditorActionListener(new TextView.OnEditorActionListener() {
