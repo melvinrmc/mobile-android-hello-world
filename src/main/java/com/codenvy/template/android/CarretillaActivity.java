@@ -42,6 +42,9 @@ public class CarretillaActivity extends Activity implements AdapterView.OnItemCl
         ArrayList<ItemVenta> itemsVenta = new ArrayList<ItemVenta>();
         itemsVenta = carretillaManager.getItems();
 
+        TextView tvResume = (TextView) findViewById(R.id.tv_total_articulos);
+        tvResume.setText(carretillaManager.getResumen());
+
         ViewGroup activityLayout = (ViewGroup) findViewById(R.id.activity_items_carretilla_layout);
         ListView layout = (ListView) findViewById(R.id.items_carretilla_layout);
 
@@ -63,8 +66,11 @@ public class CarretillaActivity extends Activity implements AdapterView.OnItemCl
         // datos en los TextView.
         Toast.makeText(
                 CarretillaActivity.this,
-                "Great! " + carretillaManager.getItems().get(position).getProducto().getNombre() + " por " + String.valueOf( carretillaManager.getItems().get(position).getMontoItem() ),
-                Toast.LENGTH_SHORT).show();
+                "Great! "
+                        + carretillaManager.getItems().get(position).getProducto().getNombre()
+                        + " por "
+                        + String.valueOf( carretillaManager.getItems().get(position).getMontoItem() ),
+                Toast.LENGTH_SHORT  ).show();
         itemSeleccionado = carretillaManager.getItems().get(position);
 
 

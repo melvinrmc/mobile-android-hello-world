@@ -44,4 +44,15 @@ public class CarretillaManager {
     public ArrayList<ItemVenta> getItems() {
         return laVenta.getItemsVenta();
     }
+
+    public float getTotal() {
+        float acumulado = 0;
+        for (ItemVenta iv: laVenta.getItemsVenta()) {
+            acumulado = acumulado + iv.getMontoItem();
+        }
+        return acumulado;
+    }
+    public String getResumen() {
+        return "(" + laVenta.getItemsVenta().size() + ") Productos por (Q "+ String.valueOf(getTotal()) + ")";
+    }
 }
