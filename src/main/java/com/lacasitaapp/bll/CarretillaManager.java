@@ -5,6 +5,7 @@ import com.lacasitaapp.dal.Producto;
 import com.lacasitaapp.dal.Venta;
 import com.lacasitaapp.dal.ItemVenta;
 
+import java.util.ArrayList;
 
 
 /**
@@ -18,6 +19,7 @@ public class CarretillaManager {
 
     public CarretillaManager(User u){
         this.vendedor = u;
+        laVenta = new Venta();
     };
 
     public void iniciarVenta(User u){
@@ -34,4 +36,12 @@ public class CarretillaManager {
         return laVenta.getItemsVenta().size();
     }
 
+
+    public int getNumItems() {
+        return  laVenta.getItemsVenta().size();
+    }
+
+    public ArrayList<ItemVenta> getItems() {
+        return laVenta.getItemsVenta();
+    }
 }

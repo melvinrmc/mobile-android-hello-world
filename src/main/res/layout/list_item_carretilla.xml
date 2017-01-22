@@ -13,9 +13,9 @@
 
     <TextView
         android:id="@+id/producto_nombre"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombres del producto"
+        android:text="Nombre del producto"
         android:layout_toRightOf="@id/producto_imagen"
         android:layout_alignParentTop="true"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -29,7 +29,7 @@
         android:layout_toRightOf="@id/producto_imagen"
         android:gravity="left"
         android:maxLines="1"
-        android:text="Peso en Libras"
+        android:text="Cantidad en Libras"
         android:layout_marginLeft="@dimen/activity_horizontal_margin" />
     <TextView
         android:id="@+id/producto_precio"
@@ -39,17 +39,20 @@
         android:layout_toRightOf="@id/producto_imagen"
         android:gravity="left"
         android:maxLines="1"
-        android:text="precio en Q."
+        android:text="Precio en Q."
         android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
-    <!--
-    <RatingBar
-        android:id="@+id/valoracion"
-        android:layout_width="wrap_content"
+
+    <TextView
+        android:id="@+id/item_total"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@id/precio"
-        android:layout_toRightOf="@id/imagen"
-        style="?android:attr/ratingBarStyleSmall"
-        android:isIndicator="true"
-        android:rating="3"/> -->
+
+        android:layout_toRightOf="@id/producto_nombre"
+        android:gravity="right"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:maxLines="1"
+        android:text="Q. 100.00"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+
 </RelativeLayout>

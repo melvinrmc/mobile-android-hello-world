@@ -19,6 +19,8 @@
             android:background="#FFFFFF"
             android:textAlignment="center"
             android:layout_weight="0.3"
+            android:id="@+id/button_carretilla"
+            android:onClick="openCarretilla"
             />
         <Button
             android:layout_width="wrap_content"

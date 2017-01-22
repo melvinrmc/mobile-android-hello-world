@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.lacasitaapp.bll.ProductoManager;
+import com.lacasitaapp.dal.User;
 
 
 public class DisplayMessageActivity extends Activity {
@@ -93,6 +94,7 @@ public class DisplayMessageActivity extends Activity {
                         DisplayMessageActivity.this,
                         "Se cargaron " + size.toString() + " productos.",
                         Toast.LENGTH_SHORT).show();
+
 
                 startActivity(new Intent(DisplayMessageActivity.this,
                         CategoriaActivity.class));

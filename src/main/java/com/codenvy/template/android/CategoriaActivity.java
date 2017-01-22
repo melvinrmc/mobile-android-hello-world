@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.lacasitaapp.bll.CarretillaManager;
 import com.lacasitaapp.dal.DataManager;
@@ -21,7 +22,8 @@ public class CategoriaActivity extends Activity {
 
 
     public static String CATEGORIA_SELECCIONADA = "CATEGORIA_SELECCIONADA";
-    public static CarretillaManager carretilla = null;
+    public Button carretillaButton;
+
 
     /**
      * Called when the activity is first created.
@@ -34,6 +36,14 @@ public class CategoriaActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categorias);
+
+        if ( CarretillaActivity.carretillaManager == null   ) {
+            CarretillaActivity.carretillaManager = new CarretillaManager(HelloAndroidActivity.usuario);
+        }
+
+        Toast.makeText(this, "La carretilla tiene " + CarretillaActivity.carretillaManager.getNumItems() + " articulos.", Toast.LENGTH_SHORT).show();
+
+
     }
 
     public void openCategoria(View view) {
@@ -62,5 +72,10 @@ public class CategoriaActivity extends Activity {
             intent.putExtra(CATEGORIA_SELECCIONADA, idCategoria);
             startActivity(intent);
         }
+    }
+
+    public void openCarretilla(View view) {
+        Intent intent = new Intent(this, CarretillaActivity.class);
+        startActivity(intent);
     }
 }

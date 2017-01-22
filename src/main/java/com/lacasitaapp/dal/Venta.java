@@ -26,6 +26,10 @@ public class Venta {
     private float cambio;
     private EstadoVenta estadoVenta;
 
+    public Venta(){
+        itemsVenta = new ArrayList<ItemVenta>();
+    }
+
     @DynamoDBHashKey(attributeName = "id_venta")
     public String getIdVenta() {
         return idVenta;

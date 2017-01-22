@@ -2,14 +2,11 @@ package com.codenvy.template.android;
 
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.method.KeyListener;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,8 +18,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,7 +34,9 @@ import java.util.ArrayList;
 public class ProductosCategoriaActivity extends Activity implements AdapterView.OnItemClickListener {
 
     public static ArrayList<Producto> productos;
-    EditText cantidad ;
+    EditText edtCantidad;
+    Producto productoSeleccionado;
+
     /**
      * Called when the activity is first created.
      *
@@ -58,70 +55,22 @@ public class ProductosCategoriaActivity extends Activity implements AdapterView.
         productos = new ArrayList<Producto>();
         productos = ProductoManager.getProductos(categoria);
         Categoria miCategoria = ProductoManager.getCategoria(categoria);
-        ViewGroup  activityLayout = (ViewGroup) findViewById(R.id.activity_productos_categoria_layout);
+        ViewGroup activityLayout = (ViewGroup) findViewById(R.id.activity_productos_categoria_layout);
         activityLayout.setBackgroundColor(Color.parseColor(miCategoria.getColor()));
         ListView layout = (ListView) findViewById(R.id.productos_categoria_layout);
 
 
         ProductosAdapter adapter;
-// Inicializamos el adapter.
+        // Inicializamos el adapter.
         adapter = new ProductosAdapter(this, productos);
-// Asignamos el Adapter al ListView, en este punto hacemos que el
-// ListView muestre los datos que queremos.
+        // Asignamos el Adapter al ListView, en este punto hacemos que el
+        // ListView muestre los datos que queremos.
         layout.setAdapter(adapter);
         layout.setOnItemClickListener(this);
 
 
-        /*
-
-        TableLayout.LayoutParams paramsForRow = new TableLayout.LayoutParams(0, TableLayout.LayoutParams.WRAP_CONTENT, 1);
-        TableRow tableRow = new TableRow(this);
-        tableRow.setLayoutParams(paramsForRow);
-        // tableRow.setWeightSum(1);
-
-        TableRow.LayoutParams params = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1);
-
-        int totProductos = productos.size();
-        int i = 0;
-
-
-
-
-        for (Producto p : productos) {
-            i++;
-            TextView textView = new TextView(this);
-            textView.setTextSize(24);
-            textView.setText(p.getSummary());
-            // textView.setLayoutParams(params);
-            textView.setPadding(5, 5, 5, 5);
-            textView.setBackgroundColor(Color.parseColor(miCategoria.getColor()));
-            textView.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    // Perform action on click
-
-                    ingresarCantidad(v);
-                }
-            });
-            tableRow.addView(textView);
-
-
-            if (tableRow.getChildCount() == 2) {
-                tableRow.setPadding(5, 5, 5, 5);
-                layout.addView(tableRow);
-                tableRow = new TableRow(this);
-                tableRow.setLayoutParams(paramsForRow);
-            } else if (i == totProductos) {
-                // relleno
-                TextView textViewRelleno = new TextView(this);
-                textViewRelleno.setTextSize(16);
-                textViewRelleno.setText("");
-                //    textViewRelleno.setLayoutParams(params);
-                tableRow.addView(textViewRelleno);
-                layout.addView(tableRow);
-            }
-
-        } */
     }
+
     @Override
     public void onItemClick(AdapterView<?> adapter, View view, int position,
                             long ID) {
@@ -131,26 +80,34 @@ public class ProductosCategoriaActivity extends Activity implements AdapterView.
                 ProductosCategoriaActivity.this,
                 "Seleccione cuantas " + productos.get(position).getUnidadMedida() + " de " + productos.get(position).getNombre(),
                 Toast.LENGTH_SHORT).show();
-
+        productoSeleccionado = productos.get(position);
         ingresarCantidad(view);
 
     }
 
-    private void ingresarCantidad(View view){
-        cantidad = (EditText) findViewById(R.id.edit_cantidad);
-        cantidad.setVisibility(View.VISIBLE);
+    private void ingresarCantidad(View view) {
 
-        cantidad.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        edtCantidad = (EditText) findViewById(R.id.edit_cantidad);
+        edtCantidad.setVisibility(View.VISIBLE);
+        edtCantidad.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 boolean handled = false;
 
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    handled = true;
-                    if (handled) {
-                        Toast.makeText(ProductosCategoriaActivity.this, "Se agregaron " + cantidad.getText() + " a la carretilla.", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(ProductosCategoriaActivity.this,
-                                CategoriaActivity.class));
+                if (!"".equalsIgnoreCase(edtCantidad.getText().toString().trim())) {
+                    if (actionId == EditorInfo.IME_ACTION_DONE) {
+                        handled = true;
+                        if (handled) {
+
+
+                            float cantidad = Float.parseFloat(edtCantidad.getText().toString().trim());
+
+                            CarretillaActivity.carretillaManager.addProducto(productoSeleccionado, cantidad);
+
+                            Toast.makeText(ProductosCategoriaActivity.this, "Se agregaron " + edtCantidad.getText() + " a la carretilla.", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(ProductosCategoriaActivity.this,
+                                    CategoriaActivity.class));
+                        }
                     }
                 }
 
@@ -159,8 +116,7 @@ public class ProductosCategoriaActivity extends Activity implements AdapterView.
         });
 
 
-
-        showSoftKeyboard(cantidad);
+        showSoftKeyboard(edtCantidad);
     }
 
     public void showSoftKeyboard(View view) {
@@ -202,11 +158,11 @@ public class ProductosCategoriaActivity extends Activity implements AdapterView.
             nombre.setText(productos.get(position).getNombre());
             nombre.setTypeface(null, Typeface.BOLD);
 
-            TextView unidadMedida = (TextView) item.findViewById(R.id.producto_unidad_medida);
+            TextView unidadMedida = (TextView) item.findViewById(R.id.producto_cantidad);
             unidadMedida.setText(productos.get(position).getUnidadMedida());
 
             TextView precio = (TextView) item.findViewById(R.id.producto_precio);
-            precio.setText( String.valueOf( productos.get(position).getPrecio() ));
+            precio.setText(String.valueOf(productos.get(position).getPrecio()));
 
             // Recogemos el TextView para mostrar la unidad de medida de celda y lo
             // establecemos.

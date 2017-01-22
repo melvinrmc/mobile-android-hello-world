@@ -27,9 +27,8 @@
         <activity android:name="com.codenvy.template.android.DisplayMessageActivity">
         </activity>
         <activity android:name="com.codenvy.template.android.CategoriaActivity" />
-        <activity android:name="com.codenvy.template.android.ProductosCategoriaActivity"
-
-            />
+        <activity android:name="com.codenvy.template.android.ProductosCategoriaActivity" />
+        <activity android:name="com.codenvy.template.android.CarretillaActivity" />
 
 
     </application>
