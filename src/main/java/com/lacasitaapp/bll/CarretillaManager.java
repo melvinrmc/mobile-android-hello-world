@@ -81,6 +81,10 @@ public class CarretillaManager {
 
         v.setFechaVenta(c.getTime());
         v.setTotalMonto(v.calcularTotal());
+
         return DataManager.saveObject(v);
+
     }
+
+
 }

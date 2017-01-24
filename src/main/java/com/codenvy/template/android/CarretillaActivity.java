@@ -96,6 +96,14 @@ public class CarretillaActivity extends Activity implements AdapterView.OnItemCl
 
     }
 
+    public void doFinalizar(View view) {
+        // Do something in response to button
+        carretillaManager = null;
+        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP));
+        finish();
+    }
+
 
     private class ItemCarretillaAdapter extends ArrayAdapter<ItemVenta> {
         private Context context;
