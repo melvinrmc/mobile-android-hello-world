@@ -29,6 +29,7 @@ android:background="@drawable/background_login"
             android:background="#FFFFFF"
             android:textAlignment="center"
             android:layout_weight="0.3"
+            android:onClick="doPago"
             />
         <Button
             android:layout_width="fill_parent"

@@ -2,6 +2,7 @@ package com.lacasitaapp.dal;
 
 import com.amazonaws.demo.userpreferencesom.Constants;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBAttribute;
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBDocument;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBHashKey;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBTable;
 
@@ -9,6 +10,7 @@ import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBTable;
  * Created by Melvin on 3/01/2017.
  */
 @DynamoDBTable(tableName = Constants.LC_POS_PRODUCTO)
+@DynamoDBDocument
 public class Producto {
     private String idProducto;
     private String categoria;

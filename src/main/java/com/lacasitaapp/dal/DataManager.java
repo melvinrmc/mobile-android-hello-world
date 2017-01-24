@@ -87,4 +87,20 @@ public class DataManager {
 
         return null;
     }
+
+    public static Venta saveObject(Venta v) {
+
+        AmazonDynamoDBClient ddb = clientManager.ddb();
+        DynamoDBMapper mapper = new DynamoDBMapper(ddb);
+
+        try {
+            // save a new item
+            mapper.save(v);
+
+        } catch (AmazonServiceException ex) {
+            clientManager.wipeCredentialsOnAuthError(ex);
+        }
+
+        return v;
+    }
 }

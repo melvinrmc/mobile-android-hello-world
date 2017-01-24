@@ -1,8 +1,12 @@
 package com.codenvy.template.android;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,16 +20,19 @@ import android.widget.Toast;
 
 import com.lacasitaapp.bll.CarretillaManager;
 import com.lacasitaapp.dal.ItemVenta;
+import com.lacasitaapp.dal.Venta;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Melvin on 21/01/2017.
  */
 
-public class CarretillaActivity extends Activity implements AdapterView.OnItemClickListener{
+public class CarretillaActivity extends Activity implements AdapterView.OnItemClickListener {
     public static CarretillaManager carretillaManager = null;
     public ItemVenta itemSeleccionado;
+    private ProgressDialog pDialog;
 
     /**
      * Called when the activity is first created.
@@ -39,7 +46,7 @@ public class CarretillaActivity extends Activity implements AdapterView.OnItemCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carretilla);
 
-        ArrayList<ItemVenta> itemsVenta = new ArrayList<ItemVenta>();
+        List<ItemVenta> itemsVenta = new ArrayList<ItemVenta>();
         itemsVenta = carretillaManager.getItems();
 
         TextView tvResume = (TextView) findViewById(R.id.tv_total_articulos);
@@ -69,19 +76,32 @@ public class CarretillaActivity extends Activity implements AdapterView.OnItemCl
                 "Great! "
                         + carretillaManager.getItems().get(position).getProducto().getNombre()
                         + " por "
-                        + String.valueOf( carretillaManager.getItems().get(position).getMontoItem() ),
-                Toast.LENGTH_SHORT  ).show();
+                        + String.valueOf(carretillaManager.getItems().get(position).getMontoItem()),
+                Toast.LENGTH_SHORT).show();
         itemSeleccionado = carretillaManager.getItems().get(position);
 
 
     }
 
+    public void doPago(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, DisplayMessageActivity.class);
 
- private class ItemCarretillaAdapter extends ArrayAdapter<ItemVenta> {
+            pDialog = new ProgressDialog(this);
+            pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            pDialog.setMessage("Procesando...");
+            pDialog.setCancelable(true);
+            pDialog.setMax(100);
+            new GuardarVentaTask().execute(carretillaManager.getVenta());
+
+    }
+
+
+    private class ItemCarretillaAdapter extends ArrayAdapter<ItemVenta> {
         private Context context;
-        private ArrayList<ItemVenta> itemsCarretilla;
+        private List<ItemVenta> itemsCarretilla;
 
-        public ItemCarretillaAdapter(Context context, ArrayList<ItemVenta> ics) {
+        public ItemCarretillaAdapter(Context context, List<ItemVenta> ics) {
             super(context, R.layout.list_item_carretilla, ics);
             // Guardamos los parámetros en variables de clase.
             this.context = context;
@@ -109,7 +129,7 @@ public class CarretillaActivity extends Activity implements AdapterView.OnItemCl
             nombre.setTypeface(null, Typeface.BOLD);
 
             TextView tvCantidad = (TextView) item.findViewById(R.id.producto_cantidad);
-            tvCantidad.setText( String.valueOf( itemsCarretilla.get(position).getCantidad() ) );
+            tvCantidad.setText(String.valueOf(itemsCarretilla.get(position).getCantidad()));
 
             TextView tvPrecio = (TextView) item.findViewById(R.id.producto_precio);
             tvPrecio.setText(String.valueOf(itemsCarretilla.get(position).getProducto().getPrecio()));
@@ -118,11 +138,64 @@ public class CarretillaActivity extends Activity implements AdapterView.OnItemCl
             tvItemTotal.setText(String.valueOf(itemsCarretilla.get(position).getMontoItem()));
 
 
-
             // Devolvemos la vista para que se muestre en el ListView.
             return item;
         }
 
+    }
+
+    private class GuardarVentaTask extends
+            AsyncTask<Venta, Void, Venta> {
+
+        @Override
+        protected Venta doInBackground(Venta... ventas) {
+            Venta venta = ventas[0];
+            return CarretillaManager.guardar(venta);
+        }
+
+
+        @Override
+        protected void onPreExecute() {
+
+            pDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
+                    GuardarVentaTask.this.cancel(true);
+                }
+            });
+
+            pDialog.setProgress(0);
+            pDialog.show();
+        }
+
+        protected void onPostExecute(Venta ventaEnBDD) {
+
+            pDialog.dismiss();
+            if (ventaEnBDD == null) {
+
+                Toast.makeText(
+                        CarretillaActivity.this,
+                        "Lo sentimos, la venta no pudo ser guardada.",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(
+                        CarretillaActivity.this,
+                        "Felicidades! La venta fue guardada con Id:" + ventaEnBDD.getIdVenta(),
+                        Toast.LENGTH_SHORT).show();
+                CarretillaActivity.carretillaManager.setVenta(ventaEnBDD);
+
+                //TODO: Redirect!
+                //startActivity(new Intent(CarretillaActivity.this,
+                //        DisplayMessageActivity.class));
+                //finish();
+            }
+        }
+
+        @Override
+        protected void onCancelled() {
+            Toast.makeText(CarretillaActivity.this, "Login cancelado!",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

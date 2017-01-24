@@ -111,7 +111,9 @@ public class HelloAndroidActivity extends Activity {
 
     }
 
+    //TODO: Eliminar UsuarioActividadTipo
     private enum UsuarioActividadTipo {LOGIN}
+
 
     private class LoginTask extends
             AsyncTask<User, Void, User> {
@@ -267,6 +269,7 @@ public class HelloAndroidActivity extends Activity {
 
     /**
      * Banderas de resultados de operaciones que devuelve el DynamoDBManager
+     * TODO: ELIMINAR DYNAMODBMAAGERTASKRESULT
      */
     private class DynamoDBManagerTaskResult {
         private DynamoDBManagerType taskType;
@@ -292,7 +295,7 @@ public class HelloAndroidActivity extends Activity {
     /**
      * Catalogo de operaciones que ofrece el DynamoDBManager
      */
-
+// TODO: ELIMIAR DYAMO DB MAAGERTYPE
     private enum DynamoDBManagerType {
         GET_TABLE_STATUS, CREATE_TABLE, INSERT_USER, LIST_USERS, CLEAN_UP, DO_USER_LOGIN
     }

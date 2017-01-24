@@ -7,6 +7,7 @@ import com.amazonaws.demo.userpreferencesom.Constants;
  * Created by Melvin on 28/12/2016.
  */
 @DynamoDBTable(tableName = Constants.LC_POS_USUARIO)
+@DynamoDBDocument
 public class User {
     private String usuario;
     private String nombre;

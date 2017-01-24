@@ -1,11 +1,13 @@
 package com.lacasitaapp.bll;
 
+import com.lacasitaapp.dal.DataManager;
 import com.lacasitaapp.dal.User;
 import com.lacasitaapp.dal.Producto;
 import com.lacasitaapp.dal.Venta;
 import com.lacasitaapp.dal.ItemVenta;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -14,16 +16,28 @@ import java.util.ArrayList;
 
 public class CarretillaManager {
 
-    private Venta laVenta;
+
+
+    private Venta venta;
     private User vendedor;
 
     public CarretillaManager(User u){
         this.vendedor = u;
-        laVenta = new Venta();
+        venta = new Venta();
+        venta.setUsuario(u);
     };
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
+    }
 
     public void iniciarVenta(User u){
         vendedor = u;
+        venta.setUsuario(u);
     }
     
     public User getVendedor(){
@@ -32,27 +46,31 @@ public class CarretillaManager {
 
     public int addProducto(Producto p, float cantidad) {
         ItemVenta iv = new ItemVenta(p,cantidad);
-        laVenta.addItem(iv);
-        return laVenta.getItemsVenta().size();
+        venta.addItem(iv);
+        return venta.getItemsVenta().size();
     }
 
 
     public int getNumItems() {
-        return  laVenta.getItemsVenta().size();
+        return  venta.getItemsVenta().size();
     }
 
-    public ArrayList<ItemVenta> getItems() {
-        return laVenta.getItemsVenta();
+    public List<ItemVenta> getItems() {
+        return venta.getItemsVenta();
     }
 
     public float getTotal() {
         float acumulado = 0;
-        for (ItemVenta iv: laVenta.getItemsVenta()) {
+        for (ItemVenta iv: venta.getItemsVenta()) {
             acumulado = acumulado + iv.getMontoItem();
         }
         return acumulado;
     }
     public String getResumen() {
-        return "(" + laVenta.getItemsVenta().size() + ") Productos por (Q "+ String.valueOf(getTotal()) + ")";
+        return "(" + venta.getItemsVenta().size() + ") Productos por (Q. "+ String.valueOf(getTotal()) + ")";
+    }
+
+    public static Venta guardar(Venta v){
+        return DataManager.saveObject(v);
     }
 }
