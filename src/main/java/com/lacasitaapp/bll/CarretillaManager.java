@@ -11,6 +11,7 @@ import com.lacasitaapp.dal.ItemVenta;
 
 
 import java.util.Calendar;
+import java.util.TimeZone;
 
 import java.util.Date;
 import java.util.List;
@@ -77,7 +78,8 @@ public class CarretillaManager {
 
     public static Venta guardar(Venta v) {
         v.setEstadoVenta(Venta.EstadoVenta.PAGADO);
-        Calendar c = Calendar.getInstance();
+        Calendar c = Calendar.getInstance(TimeZone.getDefault());
+        
 
         v.setFechaVenta(c.getTime());
         v.setTotalMonto(v.calcularTotal());

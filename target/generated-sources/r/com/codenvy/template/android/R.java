@@ -34,26 +34,34 @@ public final class R {
         public static final int ic_mojarras=0x7f020003;
     }
     public static final class id {
-        public static final int action_settings=0x7f09000b;
-        public static final int activity_display_message=0x7f090000;
-        public static final int activity_productos_categoria_layout=0x7f090003;
-        public static final int edit_cantidad=0x7f090004;
-        public static final int edit_password=0x7f090002;
-        public static final int edit_user=0x7f090001;
-        public static final int producto_imagen=0x7f090007;
-        public static final int producto_nombre=0x7f090008;
-        public static final int producto_precio=0x7f09000a;
-        public static final int producto_unidad_medida=0x7f090009;
-        public static final int productos_categoria_layout=0x7f090005;
-        public static final int text_view=0x7f090006;
+        public static final int action_settings=0x7f090011;
+        public static final int activity_display_message=0x7f090005;
+        public static final int activity_items_carretilla_layout=0x7f090000;
+        public static final int activity_productos_categoria_layout=0x7f090008;
+        public static final int button=0x7f090001;
+        public static final int button_carretilla=0x7f090004;
+        public static final int edit_cantidad=0x7f090009;
+        public static final int edit_password=0x7f090007;
+        public static final int edit_user=0x7f090006;
+        public static final int item_total=0x7f090010;
+        public static final int items_carretilla_layout=0x7f090003;
+        public static final int producto_cantidad=0x7f09000e;
+        public static final int producto_imagen=0x7f09000c;
+        public static final int producto_nombre=0x7f09000d;
+        public static final int producto_precio=0x7f09000f;
+        public static final int productos_categoria_layout=0x7f09000a;
+        public static final int text_view=0x7f09000b;
+        public static final int tv_total_articulos=0x7f090002;
     }
     public static final class layout {
-        public static final int activity_categorias=0x7f030000;
-        public static final int activity_display_message=0x7f030001;
-        public static final int activity_main=0x7f030002;
-        public static final int activity_productos_categoria=0x7f030003;
-        public static final int hello_layout=0x7f030004;
-        public static final int list_item_producto=0x7f030005;
+        public static final int activity_carretilla=0x7f030000;
+        public static final int activity_categorias=0x7f030001;
+        public static final int activity_display_message=0x7f030002;
+        public static final int activity_main=0x7f030003;
+        public static final int activity_productos_categoria=0x7f030004;
+        public static final int hello_layout=0x7f030005;
+        public static final int list_item_carretilla=0x7f030006;
+        public static final int list_item_producto=0x7f030007;
     }
     public static final class menu {
         public static final int main=0x7f080000;
